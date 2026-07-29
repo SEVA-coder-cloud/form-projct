@@ -1,29 +1,41 @@
 import { Component } from "react";
 
-class App extends Component {
-  state = {
-    todos: todos,
-    filter: '',
-  }
+class ToDoEditor extends Component {
+  
+   state = {
+    textValue: "",
+  };
 
-  toggleCompleted = (id) => {
-    this.setState((preve) => ({
-      todos: preve.todos.map(i => i.id === id ? {...i, completed: !i.completed} : i)
-    }))
-    console.log(this.state.todos)
-  }
+  handleChange = (e) => {
+    this.setState({
+      textValue: e.target.value,
+    });
+  };
 
-  deletTodo = (id) => {
-    this.setState((preve) => ({
-      todos: preve.todos.filter(i => i.id !== id)
-    }))
-    console.log(this.state.todos)
-  }
+  handleSubmit = (e) => {
+    e.preventDefault();
 
-  addTodo = (text) => {
-    const newTodo = {id: nanoid(), text, completed: false}
-    this.setState(preve => ({
-      todos: [...preve.todos, newTodo]
-    }))
+    const { textValue } = this.state;
+
+    if (textValue.trim() === "") {
+      return;
+    }
+
+    this.props.onAdd(textValue);
+
+    this.setState({
+      textValue: "",
+    });
+  };
+  render(){
+    const {textValue} = this.state
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" name="textValue" value={textValue} onChange={this.handleChange}/> 
+        <button type="submit">+</button>
+      </form>
+    )
   }
 }
+
+export default ToDoEditor

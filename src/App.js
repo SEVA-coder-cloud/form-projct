@@ -2,7 +2,10 @@ import { Component } from 'react';
 import './App.css';
 import todos from './todos.json'
 import ToDoList from './components/ToDoList';
-
+import { nanoid } from 'nanoid';
+import ToDoEditor from './components/ToDoEditor';
+import Filter from './components/Filter';
+import Counter from './components/Filter';
 class App extends Component {
   state = {
     todos: todos,
@@ -29,12 +32,25 @@ class App extends Component {
     }))
   }
 
+  changeFilter = (e) => {
+    this.setState({
+        filter: e.target.value
+    });
+};
+getFilteredTodos = () => {
+  return this.state.todos.filter(t=> t.text.toLowerCase().includes(this.state.filter.toLowerCase()))
+}
+  
   render() {
-
+    const completedTodos = todos.reduce((count, t) => t.completed ? count + 1 : count, 0);
+    
     const { todos } = this.state
     return (
       <div>
         <h1>TodoList</h1>
+        <ToDoEditor onAdd = {this.addTodo}/>
+        <Filter/>
+        <Counter/>
         <ToDoList todos={todos} onToggle={this.toggleCompleted} onDelete={this.deleteTodo}/>
       </div>
     );
