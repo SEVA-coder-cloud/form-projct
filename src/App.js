@@ -16,12 +16,11 @@ class App extends Component {
     console.log(this.state.todos)
   }
 
-  deletTodo = (id) => {
-    this.setState((preve) => ({
-      todos: preve.todos.filter(i => i.id !== id)
-    }))
-    console.log(this.state.todos)
-  }
+  deleteTodo = (id) => {
+    this.setState((prevState) => ({
+      todos: prevState.todos.filter((t) => t.id !== id),
+    }));
+  };
 
   addTodo = (text) => {
     const newTodo = {id: nanoid(), text, completed: false};
@@ -36,7 +35,7 @@ class App extends Component {
     return (
       <div>
         <h1>TodoList</h1>
-        <ToDoList todos={todos} onToggle={this.toggleCompleted} onDelete={this.deleteToDo}/>
+        <ToDoList todos={todos} onToggle={this.toggleCompleted} onDelete={this.deleteTodo}/>
       </div>
     );
   }

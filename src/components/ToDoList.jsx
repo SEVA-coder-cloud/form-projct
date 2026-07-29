@@ -13,7 +13,7 @@ class ToDoList extends Component {
               checked={todo.completed} 
               onChange={() => onToggle(todo.id)} 
             />
-            <button onClick={()=>onDelete(todo.id)}>Delete</button>
+            <button onClick={()=>onDelete(todo.id)} type="button">Delete</button>
           </li>
         ))}
       </ul>
