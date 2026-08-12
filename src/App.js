@@ -5,7 +5,7 @@ import ToDoList from './components/ToDoList';
 import { nanoid } from 'nanoid';
 import ToDoEditor from './components/ToDoEditor';
 import Filter from './components/Filter';
-import Counter from './components/Filter';
+import Counter from './components/Counter';
 class App extends Component {
   state = {
     todos: todos,
@@ -42,15 +42,14 @@ getFilteredTodos = () => {
 }
   
   render() {
-    const completedTodos = todos.reduce((count, t) => t.completed ? count + 1 : count, 0);
-    
     const { todos } = this.state
+    const completedTodos = todos.reduce((count, t) => t.completed ? count + 1 : count, 0);
     return (
       <div>
         <h1>TodoList</h1>
         <ToDoEditor onAdd = {this.addTodo}/>
         <Filter/>
-        <Counter/>
+        <Counter completedTodos ={completedTodos}/>
         <ToDoList todos={todos} onToggle={this.toggleCompleted} onDelete={this.deleteTodo}/>
       </div>
     );

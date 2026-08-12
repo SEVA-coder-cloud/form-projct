@@ -2,13 +2,13 @@
 import { Component } from "react";
 
 class Counter extends Component {
-
-
-  render() {
     
 
+  render() {
+    const { completedTodos } = this.props;
+
     return (
-        <input type="text" />
+        <p>виконано:{completedTodos}</p>
     );
   }
 }
