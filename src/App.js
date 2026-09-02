@@ -1,77 +1,70 @@
-import { Component } from 'react';
-import './App.css';
-import todos from './todos.json'
-import TimerSecond from './components/TimerSecond';
-import { ToDoList } from "./components/ToDoList"
-import GuessNumber from './components/GuessNumber';
-import { nanoid } from 'nanoid';
-import ToDoEditor from './components/ToDoEditor';
-import Filter from './components/Filter';
-import Counter from './components/Counter';
-class App extends Component {
-//   state = {
-//     todos: todos,
-//     filter: '',
-//   }
+import { useState, useEffect } from "react";
 
-//   toggleCompleted = (id) => {
-//     this.setState((preve) => ({
-//       todos: preve.todos.map(i => i.id === id ? {...i, completed: !i.completed} : i)
-//     }))
-//     console.log(this.state.todos)
-//   }
+function App() {
+  const [seconds, setSeconds] = useState(0);
 
-//   deleteTodo = (id) => {
-//     this.setState((prevState) => ({
-//       todos: prevState.todos.filter((t) => t.id !== id),
-//     }));
-//   };
+// useEffect(() => {
+//   const timer = setInterval(() => setSeconds((prev) => prev + 1), 1000);
 
-//   addTodo = (text) => {
-//     const newTodo = {id: nanoid(), text, completed: false};
-//     this.setState(preve => ({
-//       todos: [...preve.todos, newTodo]
-//     }))
-//   }
+//   return () => clearInterval(timer);
+// }, []);
 
-//   changeFilter = (e) => {
-//     this.setState({
-//         filter: e.target.value
-//     });
-// };
-// getFilteredTodos = () => {
-//   return this.state.todos.filter(t=> t.text.toLowerCase().includes(this.state.filter.toLowerCase()))
-// }
-  state = {
-  showTimer: true,
+// useEffect(() => console.log( "Виклик useEffect" ), [count]),
+// useEffect(() => console.log('виклик useEffect'), [count]);
+// useEffect(() => console.log(inpValue), [inpValue]);
+// return (
+//   <div>
+//     <input
+//       value={inpValue}
+//       onChange={(event) => setInpValue(event.target.value)}
+//     />
+
+//     <p>{inpValue}</p>
+//   </div>
+// );
+const [number, setNumber] = useState(0)
+const [massage, setMassage] = useState("")
+const [guess, setGuess] = useState("")
+
+useEffect(() => { setNumber(Math.floor(Math.random() * 10) + 1) },[])
+const handleCheck = () => {
+    if (Number(guess) === number) setMassage("Перемога")
+    if (Number(guess) !== number) setMassage("Не перемога")
+    console.log(number)
 }
+return(
+    <>
+      <h1>Вгадай Число</h1>
+      <p>{massage}</p>
+      <input value={guess} onChange={(event) => setGuess(event.target.value)} placeholder="Введи число"/>
+      <button type="button" onClick={handleCheck}>персоірити</button>
+    </>
+)
 
-toggleTimer = () => {
-  this.setState(prev => ({
-    showTimer: !prev.showTimer
-  }))
-}
 
-  render() {
-    // const { todos } = this.state
-    // const completedTodos = todos.reduce((count, t) => t.completed ? count + 1 : count, 0);
-    return (
-      <div>
-        {/* <h1>TodoList</h1>
-        <ToDoEditor onAdd = {this.addTodo}/>
-        <Filter/>
-        <Counter completedTodos ={completedTodos}/> */}
-        <TimerSecond/>
-        <ToDoList/>
-        <GuessNumber/>
-        <button onClick={this.toggleTimer}>{this.state.showTimer ? 'прибрати таймер' : 'показати таймер'}</button>
-        {this.state.showTimer && <TimerSecond />}
 
-      </div>
-    );
-  }
+  // const [count, setCount] = useState(0);
+  // const [darkMode, setDarklMode] = useState(false);
+
+  // const handleClick = () => {
+  //   setCount(count + 1);
+  // };
+
+  // useEffect(() => console.log("виклик useEffect"), [count]);
+
+  // return (
+  //   <div>
+  //     {seconds}
+  //     {/* {count}
+  //     <button onClick={handleClick}>+</button>
+  //     <button onClick={() => setDarklMode(!darkMode)}>
+  //       {darkMode ? "світла" : "темна"}
+  //     </button> */}
+  //   </div>
+  // );
 }
 
 export default App;
+
 
 
