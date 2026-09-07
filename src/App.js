@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
-
+import { useCounter } from "./useCounter";
+import { useLocalStorage } from "./useLocalStotag";
 function App() {
   const [seconds, setSeconds] = useState(0);
+const { count, increment, decrement, reset } = useCounter(11);
+const [name, setName] = useLocalStorage("name", "");
 
 // useEffect(() => {
 //   const timer = setInterval(() => setSeconds((prev) => prev + 1), 1000);
@@ -22,22 +25,26 @@ function App() {
 //     <p>{inpValue}</p>
 //   </div>
 // );
-const [number, setNumber] = useState(0)
-const [massage, setMassage] = useState("")
-const [guess, setGuess] = useState("")
+// const [number, setNumber] = useState(0)
+// const [massage, setMassage] = useState("")
+// const [guess, setGuess] = useState("")
 
-useEffect(() => { setNumber(Math.floor(Math.random() * 10) + 1) },[])
-const handleCheck = () => {
-    if (Number(guess) === number) setMassage("Перемога")
-    if (Number(guess) !== number) setMassage("Не перемога")
-    console.log(number)
-}
+// useEffect(() => { setNumber(Math.floor(Math.random() * 10) + 1) },[])
+// const handleCheck = () => {
+//     if (Number(guess) === number) setMassage("Перемога")
+//     if (Number(guess) !== number) setMassage("Не перемога")
+//     console.log(number)
+// }
 return(
     <>
-      <h1>Вгадай Число</h1>
-      <p>{massage}</p>
-      <input value={guess} onChange={(event) => setGuess(event.target.value)} placeholder="Введи число"/>
-      <button type="button" onClick={handleCheck}>персоірити</button>
+      <h2>привіт, {name}</h2>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+
+      <button onClick={decrement}>-</button>
+      <button onClick={increment}>+</button>
+      <button onClick={reset}>reset</button>
+
+      <p>{count}</p>
     </>
 )
 
