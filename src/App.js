@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useCounter } from "./useCounter";
 import { useLocalStorage } from "./useLocalStotag";
+import Forma from "./components/Forma";
+
 function App() {
   const [seconds, setSeconds] = useState(0);
 const { count, increment, decrement, reset } = useCounter(11);
@@ -37,14 +39,14 @@ const [name, setName] = useLocalStorage("name", "");
 // }
 return(
     <>
-      <h2>привіт, {name}</h2>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
-
-      <button onClick={decrement}>-</button>
+      {/* <h2>привіт, {name}</h2>
+      <input value={name} onChange={(e) => setName(e.target.value)} /> */}
+      <Forma/>
+      {/* <button onClick={decrement}>-</button>
       <button onClick={increment}>+</button>
       <button onClick={reset}>reset</button>
 
-      <p>{count}</p>
+      <p>{count}</p> */}
     </>
 )
 
