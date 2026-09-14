@@ -1,0 +1,60 @@
+.balloon-game {
+  width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.game-info {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.start-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #333;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.game-field {
+  position: relative;
+
+  width: 600px;
+  height: 400px;
+
+  margin-top: 20px;
+
+  border: 3px solid #333;
+  border-radius: 15px;
+
+  overflow: hidden;
+  background: #eaf7ff;
+}
+
+.balloon {
+  position: absolute;
+
+  border: none;
+  background: transparent;
+
+  font-size: 50px;
+
+  cursor: pointer;
+
+  transform: translate(-50%, -50%);
+}
+
+.balloon:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.game-over {
+  margin: 20px;
+}

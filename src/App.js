@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useCounter } from "./useCounter";
 import { useLocalStorage } from "./useLocalStotag";
-import Forma from "./components/Forma";
-
+// import Forma from "./components/Forma";
+import CatchBalloon from "./components/CatchBall";
 function App() {
   const [seconds, setSeconds] = useState(0);
 const { count, increment, decrement, reset } = useCounter(11);
@@ -41,7 +41,8 @@ return(
     <>
       {/* <h2>привіт, {name}</h2>
       <input value={name} onChange={(e) => setName(e.target.value)} /> */}
-      <Forma/>
+      {/* <Forma/> */}
+      <CatchBalloon/>
       {/* <button onClick={decrement}>-</button>
       <button onClick={increment}>+</button>
       <button onClick={reset}>reset</button>
