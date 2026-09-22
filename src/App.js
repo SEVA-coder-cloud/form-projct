@@ -1,14 +1,17 @@
-
-import { Welcome } from "./components/Welcome";
-import { LanguageProvider } from "./components/LanguageContex";
-import { LanguageSwitcher } from "./components/LanguageSwitcher";
+import { Calculation } from "./components/Calculations";
+import { Planet } from "./components/Planets";
 export default function App() {
  
   return (
-    <LanguageProvider>
-      <Welcome/>
-      <LanguageSwitcher/>
-    </LanguageProvider>
+    // <UserContext.Provider value={{ name: "Petro", roll: "student" }}>
+  // <Planet/>
+    <Calculation/>
+    // <LanguageProvider>
+    //   <Welcome/>
+    //   <LanguageSwitcher/>
+    // </LanguageProvider>
+    // </UserContext.Provider>
+
   );
 }
 
