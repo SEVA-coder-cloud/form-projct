@@ -1,23 +1,71 @@
-import { useState, useEffect, useCallback } from "react";
+import { useReducer } from "react";
 
-export default function Forma() {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  useEffect(() => {
-    if(email&&name){
-        document.title=name
-    }
+const INITIAL_STATE = {
+  name: "",
+  email: "",
+  password: "",
+};
 
-  }, [email, name]);
+function reducer(state, action) {
+  switch (action.type) {
+    case "changeName":
+      return {
+        ...state,
+        name: action.payload,
+      };
+  }
+}
+
+
+
+const Form = () => {
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+
+   
+
+function FormComponent({ state, dispatch }) {
+  // Універсальний обробник для всіх інпутів
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    // Динамічно створюємо тип екшену: changeName, changeEmail або changePassword
+    const actionType = `change${name.charAt(0).toUpperCase() + name.slice(1)}`;
+    
+    dispatch({ 
+      type: actionType, 
+      payload: value 
+    });
+  };
 
   return (
-    <>
-      {" "}
-      <form>
-        <input type="text" value={name}  onChange={(event)=>setName(event.target.value)}/>
-        <input type="email" value={email} onChange={(event)=>setEmail(event.target.value)} />
-        <button type="button">change name</button>
-      </form>
-    </>
+    <form>
+      <input
+        name="name"
+        placeholder="name"
+        value={state.name}
+        onChange={handleChange}
+      />
+      
+      <input
+        name="email"
+        placeholder="email"
+        value={state.email}
+        onChange={handleChange}
+      />
+      
+      <input
+        name="password"
+        type="password"
+        placeholder="password"
+        value={state.password}
+        onChange={handleChange}
+      />
+    </form>
   );
 }
+
+};
+
+
+
+
