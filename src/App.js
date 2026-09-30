@@ -21,13 +21,45 @@
 //   setClick(click + 1);
 // }, []);
 
-import 
+// import 
 
-  return (
-    <>
-          {/* <ButtonComponent onClick={handleClick}/>
-          <button onClick={() => setClick(click + 1)}>click pls</button> */}
-   </>
-  );
+//   return (
+//     <>
+//           {/* <ButtonComponent onClick={handleClick}/>
+//           <button onClick={() => setClick(click + 1)}>click pls</button> */}
+//    </>
+//   );
 
+const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+
+function App() {
+  const [pokemons, setPokemons] = useState([]);
+
+  useEffect(() => {
+    const getPokemons = async () => {
+      try {
+        const resp = await fetch(BASE_URL);
+        const data = await resp.json();
+        setPokemons(data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getPokemons();
+  }, []);
+
+  console.log(pokemons);
+
+
+return (
+  <ul>
+    {pokemons.map((v, idx) => (
+      <li key={idx}>
+        {v.name}
+        <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idx + 1}.png`} />
+      </li>
+    ))}
+  </ul>
+);
+}
 
